@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 	 set :session_secret, "password_security"
 	end
 
-	get "/" do
+	get '/' do
 	 erb :index
 	end 
 
