@@ -1,1 +1,14 @@
+<h1> Tells us where you've been! Select the countries you have gone to from the list: </h1>
+
+
+<table>
+	<% Country.all.in_groups_of(4, false) do |row| %>
+	   <tr>
+		<% for country in row %>
+		 <td> <input type="checkbox" name="country.id"> <%= country.name %> </td> 
+		<% end  %>
+	   </tr>
+	<% end  %>
+</table>
+
 <button type="button" name="button"><a href="/logout">Logout</a></button>
