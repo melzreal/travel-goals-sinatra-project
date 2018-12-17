@@ -1,14 +1,28 @@
-<h1> Tells us where you've been! Select the countries you have gone to from the list: </h1>
+<h1> Tells us where you've been! Create a holiday name and select the countries you have gone to:</h1>
+
+<form action="/holidays" method="post">
+
+<h2><label>  Name Your Holiday! </label><input type="text" name="holiday[name]"> 
+ </h2>
 
 
+<br>
 <table>
 	<% Country.all.in_groups_of(4, false) do |row| %>
 	   <tr>
 		<% for country in row %>
-		 <td> <input type="checkbox" name="country.id"> <%= country.name %> </td> 
+		 <td> <input type="checkbox" name="holiday[country_ids][]"
+               value="<%=country.id%>" id="<%=country.id%>"> 
+		 	<%= country.name %> </input> </td> 
 		<% end  %>
 	   </tr>
 	<% end  %>
 </table>
+<br>
+
+<h2> 
+<input type="submit" value="Create Holidays!">
+</h2>
+</form>
 
 <button type="button" name="button"><a href="/logout">Logout</a></button>
