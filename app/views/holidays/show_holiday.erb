@@ -1,6 +1,22 @@
-<p> Users will be redirected to show holiday after selecting countries from /holidays. </p>
-<p> This page will then have a clickable list of all selected countries that redirects to /country/edit (new_city.erb) where a user can add visited cities within that country </p>
-<p>This view will also display all visited cities for each country if they have already been created</p>
+<p> <%= @user.username %> is logged in. </p>
+<br>
+<br>
+<%= @holiday.name%> <p>has holidayed:</p>
 
-List of Countries
-  List of cities visited in each country
+<br>
+
+<form method="post" action="/holidays/<%=@holiday.id%>/delete">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete Holiday" id="submit" />
+</form>
+<br>
+
+
+
+<a href="/holidays/new">New Holiday!</a>
+<br>
+<a href="/holidays">See all your own holidays !</a>
+<br>
+<a href="/all">See all holidays! </a>
+<br>
+<a href="/logout">Log Out</a>
