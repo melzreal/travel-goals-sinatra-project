@@ -11,19 +11,21 @@ You can edit a city visited.
 
 
 
-Our models:
+Checklist done:
 
-User:      has_many holidays
-		   has_secure_password 
-
-Holidays   belongs_to user
-           has many countries through holiday_countries
-
-Countries  has_many cities 
-		   has many holidays through  holiday_countries
+- [x] Models and databases created, countries seeded
+- [x] Users can register, login, logout
+- [x] Users can create holidays with a name and associated countries.
+- [x] Users can view holidays/ countries and click on them
 
 
-Cities     belongs_to countries
+To do:
+- [ ] Add edit forms to add notes to each country
+- [ ] Add ability to delete countries 
+- [ ] Add secure authentication (currently session secret is set to secret)
+- [ ] Prevent other users from modifying content that was not created by that user
+- [ ] Add flash messages to request logins and display errors
+
 
 Look to this space for updates. 
 
