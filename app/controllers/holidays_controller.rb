@@ -1,13 +1,22 @@
 class HolidaysController < ApplicationController
 
-	get '/holidays' do 
+	get '/holidays' do
+
 	  if logged_in?
-	    erb :'holidays/holidays' 
+	     @user = User.find_by_id(session[:user_id])
+      	 erb :'holidays/holidays' 
 	  else
 	  	redirect '/login'
 	  end  
 	end
 
+	get '/holidays/new' do 
+	  if logged_in?
+	    erb :'holidays/new_holiday' 
+	  else
+	  	redirect '/login'
+	  end  
+	end
 
 
 	post '/holidays' do 
@@ -16,6 +25,7 @@ class HolidaysController < ApplicationController
 			@user = session[:user_id]
 			@holiday = Holiday.create(params[:holiday])
 			@holiday.user_id = @user
+			@holiday.country_ids
 			@holiday.save 
 			redirect to "/holidays/#{@holiday.id}"
 		else 
@@ -34,5 +44,9 @@ class HolidaysController < ApplicationController
       		redirect '/login'
     	end 
     end 
+
+    get '/holidays/:id/edit' do
+		erb :'/holidays/edit_country'
+	end 
 
 end 

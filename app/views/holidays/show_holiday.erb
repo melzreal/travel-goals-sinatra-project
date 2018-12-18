@@ -1,10 +1,22 @@
 <p> <%= @user.username %> is logged in. </p>
 <br>
 <br>
-<%= @holiday.name%> <p>has holidayed:</p>
+<%= @holiday.name%> <p>On this holiday, <%= @user.username %> went to:</p>
+
+
+
+<% Country.all.each do |c| %>
+<%   @holiday.country_ids.each do |d|  %>
+<%     if c.id == d    %>
+<br>
+ <a href="/holidays/<%=c.id%>/edit">  <%= c.name  %>    </a> 
+       <% end  %>  
+   <% end  %>
+ <% end   %>
+
 
 <br>
-
+<br>
 <form method="post" action="/holidays/<%=@holiday.id%>/delete">
   <input type="hidden" name="_method" value="DELETE" />
   <input type="submit" value="Delete Holiday" id="submit" />
