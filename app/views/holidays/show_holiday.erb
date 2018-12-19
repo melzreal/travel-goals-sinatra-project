@@ -1,4 +1,4 @@
-<p> <%= @user.username %> is logged in. </p>
+<p> <%= @logged_in.username %> is logged in. </p>
 <br>
 <br>
 <%= @holiday.name%> <p>On this holiday, <%= @user.username %> went to:</p>
@@ -9,7 +9,7 @@
 <%   @holiday.country_ids.each do |d|  %>
 <%     if c.id == d    %>
 <br>
- <a href="/holidays/<%=c.id%>/edit">  <%= c.name  %>    </a> 
+ <a href="/holidays/country/<%=c.id%>/edit">  <%= c.name  %>    </a> 
        <% end  %>  
    <% end  %>
  <% end   %>
@@ -27,8 +27,10 @@
 
 <a href="/holidays/new">New Holiday!</a>
 <br>
-<a href="/holidays">See all your own holidays !</a>
+<a href="/holidays">See all holidays !</a>
 <br>
-<a href="/all">See all holidays! </a>
+<br>
+<a href="/holidays/<%= @holiday.id %>/delete"> Delete this holiday.</a>
+<br>
 <br>
 <a href="/logout">Log Out</a>

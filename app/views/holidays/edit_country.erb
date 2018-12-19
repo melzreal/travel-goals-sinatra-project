@@ -1,2 +1,13 @@
-User will be redirected here when clicking on a given country inside a holiday
-Within this form the user can add notes about the holiday or delete the country from the list.
+
+<%= @country.name %>
+
+<label> Edit this country and add notes to it! </label>
+
+
+<label> You can also delete your countries from your visited places: </label>
+<form method="post" action="/holidays/country/<%=@country.id%>/delete">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="Delete Country" id="submit" />
+</form>
+
+

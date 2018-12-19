@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     
     get '/login' do
       if logged_in?
-        redirect '/holidays'
+        redirect '/holidays/new'
       else
         erb :'/users/login'
       end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 	  user = User.find_by(:username => params[:user][:username])	 
 		if user && user.authenticate(params[:user][:password])
 			session[:user_id] = user.id
-			redirect '/holidays'
+			redirect '/holidays/new'
 		else
 			redirect '/error'
 		end

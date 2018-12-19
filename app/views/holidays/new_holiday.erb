@@ -8,7 +8,7 @@
 
 <br>
 <table>
-	<% Country.all.in_groups_of(4, false) do |row| %>
+	<% Country.all.in_groups_of(5, false) do |row| %>
 	   <tr>
 		<% for country in row %>
 		 <td> <input type="checkbox" name="holiday[country_ids][]"
