@@ -1,1 +1,59 @@
-user should be able to delete a country from a holiday? or should this functionality just be added to edit country?
+
+<form action="/holidays/<%=@holiday.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+
+
+
+<h2><label>  Rename Your Holiday: </label>
+	<input type="text" name="holiday[name]" value="<%= @holiday.name %> "> 
+ </h2>
+
+<br>
+<table>
+	<% Country.all.in_groups_of(5, false) do |row| %>
+	   <tr>
+		<% for country in row %>
+		 <td> 
+<input type="checkbox" name="holiday[country_ids][]" id="<%=country.id%>" value="<%=country.id%>" <%='checked' if @holiday.countries.include?(country) %> > 
+		 	<%= country.name %> 
+		 </input> 
+		</td> 
+		<% end  %>
+	   </tr>
+	<% end  %>
+</table>
+<br>
+
+
+
+<label> You can also add notes to your holiday here, and share tips with other travellers: </label>
+<br>
+<input type="text" name="holiday[holiday_notes]">
+
+
+
+<h2> 
+<input type="submit" value="Save Your Changes">
+</h2>
+</form>
+
+
+
+
+
+<label> You can also delete your Holiday: </label>
+<br>
+
+<br>
+<form method="post" action="/holidays/<%=@holiday.id%>/delete">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete Holiday" id="submit" />
+</form>
+<br>
+
+
+
+
+
+
+</form>

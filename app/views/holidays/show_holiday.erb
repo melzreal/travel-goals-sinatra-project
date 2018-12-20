@@ -10,10 +10,17 @@
 <%     if c.id == d    %>
 <br>
  <a href="/holidays/country/<%=c.id%>/edit">  <%= c.name  %>    </a> 
+
+
        <% end  %>  
    <% end  %>
  <% end   %>
 
+<p> These were the notes taken: </p>
+<% if !@holiday.holiday_notes.nil? %>
+<%= @holiday.holiday_notes %> 
+<br>
+<% end   %>
 
 <br>
 <br>
@@ -25,7 +32,8 @@
 
 
 
-
+<button type="button"><a href="/holidays/<%=@holiday.id%>/edit">Edit this holiday!</a></button>
+<br>
 <button type="button"><a href="/holidays/new">New Holiday!</a></button>
 <button type="button"><a href="/">Go Back to homepage</a></button>
 <br>

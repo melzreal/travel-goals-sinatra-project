@@ -33,7 +33,7 @@ class HolidaysController < ApplicationController
 
 
   	get '/holidays/user' do
-  		
+
     	if logged_in?
     		@user = User.find(session[:user_id])
     		erb :'holidays/show_user_holidays'
@@ -53,8 +53,21 @@ class HolidaysController < ApplicationController
     	end 
     end 
 
+    get '/holidays/:id/edit' do
+
+	    if logged_in?
+      		@holiday = Holiday.find(params[:id])
+     		@user = User.find(@holiday.user_id)
+     		@logged_in =  User.find_by_id(session[:user_id])
+      		erb :'holidays/edit_holiday'
+    	else
+      		redirect '/login'
+    	end 
+    end 
+
 
     get '/holidays/country/:id' do 
+
     	if logged_in? 
     		@country = Country.find(params[:id])
     		redirect "/holidays/country/#{@country.id}/edit"
@@ -73,10 +86,24 @@ class HolidaysController < ApplicationController
 		end 
 	end 
 
+	patch '/holidays/:id' do
+
+        if logged_in?
+          @holiday = Holiday.find(params[:id])
+	          if !params[:holiday].empty?
+	            @holiday.update(params[:holiday]) unless @holiday.user_id != session[:user_id]
+	            @holiday.save
+	            redirect to '/holidays'
+	          else
+	            redirect to '/holidays'
+	          end
+        else
+         redirect '/login'
+        end
+  	end
 
 
 	delete '/holidays/country/:id/delete' do
-	
     	if logged_in?
     		@country = Country.find(params[:id])
     		user = User.find(session[:user_id])

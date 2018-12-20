@@ -1,10 +1,28 @@
 
+
 <%= @country.name %>
 <br>
-<label> Edit this country and add notes to it! </label>
+
+<form action="/country/<%=@country.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+
+
+<label> You can add notes to this country to give travellers tips about your favourite things to see and do: </label>
 <br>
+<input type="text" name="country[notes]">
+
+<label> You can add the cities / towns you visited on this country: </label>
+<br>
+<input type="text" name="city[name][]">
+<input type="text" name="city[name][]">
+<input type="text" name="city[name][]">
+
+
+<input type="submit" id="submit" value="submit" />
+</form>
 
 <label> You can also delete your countries from your visited places: </label>
+<br>
 <form method="post" action="/holidays/country/<%=@country.id%>/delete">
   <input type="hidden" name="_method" value="DELETE" />
   <input type="submit" value="Delete Country" id="submit" />
