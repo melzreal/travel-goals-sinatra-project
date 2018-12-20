@@ -102,6 +102,21 @@ class HolidaysController < ApplicationController
         end
   	end
 
+	patch '/country/:id' do
+
+        if logged_in?
+          @country = Country.find(params[:id])
+	          if !params[:country].empty?
+	            @country.update(params[:country]) unless @country..user_id != session[:user_id]
+	            @holiday.save
+	            redirect to '/holidays'
+	          else
+	            redirect to '/holidays'
+	          end
+        else
+         redirect '/login'
+        end
+  	end
 
 	delete '/holidays/country/:id/delete' do
     	if logged_in?
