@@ -1,12 +1,12 @@
 
 <%= @country.name %>
-
+<br>
 <label> Edit this country and add notes to it! </label>
-
+<br>
 
 <label> You can also delete your countries from your visited places: </label>
 <form method="post" action="/holidays/country/<%=@country.id%>/delete">
-  <input type="hidden" name="_method" value="delete" />
+  <input type="hidden" name="_method" value="DELETE" />
   <input type="submit" value="Delete Country" id="submit" />
 </form>
 
