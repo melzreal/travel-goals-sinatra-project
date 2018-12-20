@@ -31,6 +31,17 @@ class HolidaysController < ApplicationController
 		end 	
 	end 
 
+
+  	get '/holidays/user' do
+  		
+    	if logged_in?
+    		@user = User.find(session[:user_id])
+    		erb :'holidays/show_user_holidays'
+    	else
+      		redirect '/login'
+    	end  
+    end 
+
 	get '/holidays/:id' do
 	    if logged_in?
       		@holiday = Holiday.find(params[:id])
@@ -41,7 +52,6 @@ class HolidaysController < ApplicationController
       		redirect '/login'
     	end 
     end 
-
 
 
     get '/holidays/country/:id' do 
