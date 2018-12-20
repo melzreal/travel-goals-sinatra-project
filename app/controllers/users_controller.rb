@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
 	get '/signup' do
 	 session.clear
-	 
 	 if logged_in?
 		redirect '/holidays'
 	 else
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
        @user = User.create(params[:user])
        @user.save
        session[:user_id] = @user.id
-       redirect '/holidays'
+       redirect '/holidays/new'
      end
 	end
  
@@ -32,7 +31,6 @@ class UsersController < ApplicationController
 
 
 	post '/login' do
-		
 	  user = User.find_by(:username => params[:user][:username])	 
 		if user && user.authenticate(params[:user][:password])
 			session[:user_id] = user.id
