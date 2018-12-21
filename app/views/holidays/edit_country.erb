@@ -14,21 +14,16 @@
 
 <label> You can add the cities / towns you visited on this country: </label>
 <br>
-<input type="text" name="city[name][]">
-<br>
-<input type="text" name="city[name][]">
-<br>
-<input type="text" name="city[name][]">
+<input type="text" name="city[name][]" id="city1">
 
+<br>
+<input type="text" name="city[name][]" id="city2">
 
-<input type="submit" id="submit" value="submit" />
+<br>
+<input type="text" name="city[name][]" id="city3">
+
+<input type="submit" id="cities" value="submit" />
 </form>
 
-<label> You can also delete your countries from your visited places: </label>
-<br>
-<form method="post" action="/holidays/country/<%=@country.id%>/delete">
-  <input type="hidden" name="_method" value="DELETE" />
-  <input type="submit" value="Delete Country" id="submit" />
-</form>
 
 

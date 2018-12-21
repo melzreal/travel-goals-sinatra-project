@@ -35,6 +35,20 @@
 <% end  %>
 
 
+<h2> These are all the Cities <%= @user.username %> has seen so far: </h2>
+<% name_array = []%>
+<% City.all.each do |c| %>
+<%  country_ids.each do |b|%>
+<%   if c.country_id == b%>
+<br>
+<br>
+<br>
+<%=     c.name %>
+<%   end %>
+<%  end  %>
+<% end  %>
+
+
 
 
 <br>

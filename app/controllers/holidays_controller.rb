@@ -5,7 +5,7 @@ class HolidaysController < ApplicationController
 	     @user = User.find_by_id(session[:user_id])
       	 erb :'holidays/holidays' 
 	  else
-	  	redirect '/login'
+	  	redirect "/login?error=You have to be logged in to do that"
 	  end  
 	end
 
@@ -33,12 +33,12 @@ class HolidaysController < ApplicationController
 
 
   	get '/holidays/user' do
-
+  		binding.pry
     	if logged_in?
     		@user = User.find(session[:user_id])
     		erb :'holidays/show_user_holidays'
     	else
-      		redirect '/login'
+      		redirect "/login?error=You have to be logged in to do that"
     	end  
     end 
 
@@ -49,7 +49,7 @@ class HolidaysController < ApplicationController
      		@logged_in =  User.find_by_id(session[:user_id])
       		erb :'holidays/show_holiday'
     	else
-      		redirect '/login'
+      		redirect "/login?error=You have to be logged in to do that"
     	end 
     end 
 
@@ -61,30 +61,10 @@ class HolidaysController < ApplicationController
      		@logged_in =  User.find_by_id(session[:user_id])
       		erb :'holidays/edit_holiday'
     	else
-      		redirect '/login'
+      		redirect "/login?error=You have to be logged in to do that"
     	end 
     end 
 
-
-    get '/holidays/country/:id' do 
-
-    	if logged_in? 
-    		@country = Country.find(params[:id])
-    		redirect "/holidays/country/#{@country.id}/edit"
-		else 
-			redirect '/login'
-		end 
-	end 
-
-    get '/holidays/country/:id/edit' do
-    	
-    	if logged_in?
-    		@country = Country.find(params[:id])
-			erb :'/holidays/edit_country'
-		else 
-			redirect '/login'
-		end 
-	end 
 
 	patch '/holidays/:id' do
 
@@ -98,42 +78,11 @@ class HolidaysController < ApplicationController
 	            redirect to '/holidays'
 	          end
         else
-         redirect '/login'
+         redirect "/login?error=You have to be logged in to do that"
         end
   	end
 
-	patch '/country/:id' do
 
-        if logged_in?
-          @country = Country.find(params[:id])
-	          if !params[:country].empty?
-	            @country.update(params[:country]) unless @country..user_id != session[:user_id]
-	            @holiday.save
-	            redirect to '/holidays'
-	          else
-	            redirect to '/holidays'
-	          end
-        else
-         redirect '/login'
-        end
-  	end
-
-	delete '/holidays/country/:id/delete' do
-    	if logged_in?
-    		@country = Country.find(params[:id])
-    		user = User.find(session[:user_id])
-
-       	CountryHoliday.all.each do |b|
-       		if b.country_id == @country.id 
-       			b.delete 
-       		end 
-       	end 
-      
-   			redirect '/holidays'		 	 					
-		else 
-			redirect '/login'
-		end 
-	end 
 
 	delete '/holidays/:id/delete' do
 		
@@ -142,7 +91,7 @@ class HolidaysController < ApplicationController
     		 holiday.delete unless holiday.user_id != session[:user_id]
 			 redirect '/holidays'
 		else 
-			redirect '/login'
+			redirect "/login?error=You have to be logged in to do that"
 		end 
 	end 
 

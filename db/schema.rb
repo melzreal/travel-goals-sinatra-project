@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_133612) do
+ActiveRecord::Schema.define(version: 2018_12_21_154717) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "country_id"
+    t.index ["name"], name: "index_cities_on_name", unique: true
   end
 
   create_table "countries", force: :cascade do |t|
