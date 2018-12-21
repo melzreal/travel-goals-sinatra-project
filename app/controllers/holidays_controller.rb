@@ -33,7 +33,7 @@ class HolidaysController < ApplicationController
 
 
   	get '/holidays/user' do
-  		binding.pry
+  	
     	if logged_in?
     		@user = User.find(session[:user_id])
     		erb :'holidays/show_user_holidays'

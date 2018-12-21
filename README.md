@@ -20,15 +20,14 @@ Checklist done:
 - [x] Users can create holidays with a name and associated countries.
 - [x] Users can view holidays/ countries and click on them
 - [x] Prevent users from deleting holidays that were not created by that user
-- [x] Added ability to delete countries 
+- [x] Include user input validations - only for uniqueness of username and uniqueness of country, no html input validations enforced.
 
 
 
-To do:
-- [ ] Add edit forms to add notes to each country and patch methods
+Improvements to do:
+- [x] Add edit forms to add notes to each country and patch methods
 - [ ] Add secure authentication (currently session secret is set to secret)
-- [ ] Prevent users from deleting countries not associated to that user via holidays
-- [ ] Add flash messages to request logins and display errors
+
 
 
 Look to this space for updates. 
