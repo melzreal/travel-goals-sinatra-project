@@ -36,6 +36,17 @@ class HolidaysController < ApplicationController
   	
     	if logged_in?
     		@user = User.find(session[:user_id])
+    		country_ids =[]
+    		Holiday.all.map{|c| c.user_id==@user.id ? country_ids << c.country_ids : false } 
+    		@name_array = []
+			 Country.all.each do |c| 
+				 country_ids.flatten.each do |b|
+				 if c.id == b
+				  	 @name_array << c.name 
+				 end 
+			   end  
+			 end  
+
     		erb :'holidays/show_user_holidays'
     	else
       		redirect "/login?error=You have to be logged in to do that"
@@ -54,7 +65,7 @@ class HolidaysController < ApplicationController
     end 
 
     get '/holidays/:id/edit' do
-    	binding.pry
+    	
 	    if logged_in?
       		@holiday = Holiday.find(params[:id])
      		@user = User.find(@holiday.user_id)

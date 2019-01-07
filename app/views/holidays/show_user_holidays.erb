@@ -2,54 +2,18 @@
 <br>
 <br>
 
+   
 
-<% holiday_ids = []%>
-<% Holiday.all.each do |c| %>
-<%   if c.user_id == @user.id%>
-<%  holiday_ids << c.id %>
- <a href="/holidays/<%=c.id%>">  
- 	<br>
- 	<%=   c.name  %>
-</a>	
-<%  end  %>
-<% end  %>
-
-<% country_ids = []%>
-<% CountryHoliday.all.each do |c| %>
-<%  holiday_ids.each do |b|%>
-<%   if c.holiday_id == b%>
-<%   	country_ids << c.country_id%>
-<%   end %>
-<%  end  %>
-<% end  %>
+<% @user.holidays.each do  |c|  %>
+ <a href="/holidays/<%=c.id%>"> 
+ <br> <%=   c.name  %> </a>	
+      <%      end  %>
 
 <h2> These are all the countries <%= @user.username %> has seen so far: </h2>
-<% name_array = []%>
-<% Country.all.each do |c| %>
-<%  country_ids.each do |b|%>
-<%   if c.id == b%>
-<br>
-<%=     c.name %>
-<%   end %>
-<%  end  %>
-<% end  %>
-
-
-<h2> These are all the Cities <%= @user.username %> has seen so far: </h2>
-<% name_array = []%>
-<% City.all.each do |c| %>
-<%  country_ids.each do |b|%>
-<%   if c.country_id == b%>
-<br>
-<br>
-<br>
-<%=     c.name %>
-<%   end %>
-<%  end  %>
-<% end  %>
-
-
-
+<% @name_array.each do  |c|  %>
+ <br> 
+ <%=   c  %> 	
+ <%   end  %>
 
 <br>
 <button type="button"><a href="/holidays">See all holidays </a></button>
