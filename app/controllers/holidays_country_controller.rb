@@ -29,9 +29,6 @@ class HolidaysCountryController < ApplicationController
           @country = Country.find(params[:id])
 	          if !params[:country][:notes].empty?
 		      	  @country.country_notes = params[:country][:notes]
-		      	  params[:city][:name].each do |c| 
-		      	   	@country.cities << City.create(name: c) unless c==""
-		      	  end 
 		          @country.save
 		          redirect to '/holidays'  
 	          end

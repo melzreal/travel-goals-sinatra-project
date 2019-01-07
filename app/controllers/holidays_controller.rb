@@ -54,7 +54,7 @@ class HolidaysController < ApplicationController
     end 
 
     get '/holidays/:id/edit' do
-
+    	binding.pry
 	    if logged_in?
       		@holiday = Holiday.find(params[:id])
      		@user = User.find(@holiday.user_id)

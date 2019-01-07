@@ -10,18 +10,23 @@ class UsersController < ApplicationController
 	end
 
 	post '/signup' do
-	 if params[:user][:username].empty? || params[:user][:email].empty? || params[:user][:password].empty?
+	 if params[:user][:username].empty? || params[:user][:email].empty? || params[:user][:password].empty? 
       redirect '/error'
-     else
+     else 
        @user = User.create(params[:user])
-       @user.save
-       session[:user_id] = @user.id
-       redirect '/holidays/new'
+     	 if @user.valid?
+      		 session[:user_id] = @user.id
+      		 redirect '/holidays/new'
+	   	 else 
+	   	 	@user.errors.add('username', 'cannot be duplicate')
+	     	erb :'/users/invalid_user'
+	     end 
      end
 	end
  
     
     get '/login' do
+
       if logged_in?
         redirect '/holidays/new'
       else

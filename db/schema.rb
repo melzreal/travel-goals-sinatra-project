@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2018_12_21_154717) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.integer "country_id"
     t.index ["name"], name: "index_cities_on_name", unique: true
   end
 
@@ -26,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_154717) do
   create_table "country_holidays", force: :cascade do |t|
     t.integer "holiday_id"
     t.integer "country_id"
+    t.integer "city_id"
   end
 
   create_table "holidays", force: :cascade do |t|
