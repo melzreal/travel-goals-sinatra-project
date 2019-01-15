@@ -10,6 +10,7 @@ class HolidaysController < ApplicationController
 	end
 
 	get '/holidays/new' do 
+
 	  if logged_in?
 	    erb :'holidays/new_holiday' 
 	  else
@@ -19,11 +20,17 @@ class HolidaysController < ApplicationController
 
 
 	post '/holidays' do 
+		binding.pry
 	 	if !params[:holiday].empty?
 			@user = session[:user_id]
 			@holiday = Holiday.create(params[:holiday])
 			@holiday.user_id = @user
-			@holiday.country_ids
+
+			params[:city][:name].each do |c|
+			  @city = City.create(name: c)
+			  @holiday.city_ids << @city.id
+			end 
+
 			@holiday.save 
 			redirect to "/holidays/#{@holiday.id}"
 		else 

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
    has_many :holidays
-   has_secure_password 
+   has_secure_password
    validates_uniqueness_of :username
    
     def slug

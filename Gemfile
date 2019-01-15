@@ -3,6 +3,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
+gem 'rack-flash3'
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
@@ -12,7 +13,8 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
-gem "tux"
+gem 'tux'
+
 
 group :test do
   gem 'rspec'

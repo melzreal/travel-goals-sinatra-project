@@ -1,8 +1,5 @@
 <h1> <%= @user.username %> has been on the following holidays: </h1>
 <br>
-<br>
-
-   
 
 <% @user.holidays.each do  |c|  %>
  <a href="/holidays/<%=c.id%>"> 

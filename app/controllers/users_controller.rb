@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+	use Rack::Flash
 
 	get '/signup' do
 	 session.clear
@@ -22,6 +25,7 @@ class UsersController < ApplicationController
 	     	erb :'/users/invalid_user'
 	     end 
      end
+
 	end
  
     
@@ -40,8 +44,11 @@ class UsersController < ApplicationController
 		if user && user.authenticate(params[:user][:password])
 			session[:user_id] = user.id
 			redirect '/holidays/new'
-		else
-			redirect '/error'
+		elsif user && !user.authenticate(params[:user][:password])
+			flash[:notice] = "The password was incorrect. Please try again."
+			redirect '/login'
+		else 
+		  redirect '/error'
 		end
 
 	end
