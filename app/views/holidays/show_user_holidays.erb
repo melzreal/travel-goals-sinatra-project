@@ -12,6 +12,13 @@
  <%=   c  %> 	
  <%   end  %>
 
+ <h2> These are all the Cities <%= @user.username %> has seen so far: </h2>
+<% @city_array.uniq.each do  |c|  %>
+ <br> 
+ <%=   c  %> 	
+ <%   end  %>
+
+
 <br>
 <button type="button"><a href="/holidays">See all holidays </a></button>
 <br>

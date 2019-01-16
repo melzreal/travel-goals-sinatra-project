@@ -20,17 +20,18 @@ class HolidaysController < ApplicationController
 
 
 	post '/holidays' do 
-		binding.pry
+		
 	 	if !params[:holiday].empty?
 			@user = session[:user_id]
 
 			@holiday = Holiday.new(name: params[:holiday][:name], country_ids: params[:holiday][:country_ids])
 			@holiday.user_id = @user
+			cities = []
 			params[:city][:name].each do |a| 
 					@city = City.find_or_create_by(name: a) unless a == ""
-					@holiday.city_ids << @city.id 
+					cities << @city.id 
 			end
-
+			@holiday.city_ids = cities
 			@holiday.save 
 
 			redirect to "/holidays/#{@holiday.id}"
@@ -41,16 +42,19 @@ class HolidaysController < ApplicationController
 
 
   	get '/holidays/user' do
-  	
+  	 
     	if logged_in?
     		@user = User.find(session[:user_id])
     		country_ids =[]
     		city_ids =[]
-    		@name_array = []
-    		@city_array =[]
+    		
 			Holiday.all.map{|c| c.user_id==@user.id ? country_ids << c.country_ids : false } 
     		Holiday.all.map{|c| c.user_id==@user.id ? city_ids << c.city_ids : false } 
 
+
+			@name_array = []
+    		@city_array =[]
+			
 			Country.all.each do |c| 
 				 country_ids.flatten.each do |b|
 				 if c.id == b

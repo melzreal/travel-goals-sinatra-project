@@ -1,33 +1,18 @@
 <p> <%= @logged_in.username %> is logged in. </p>
 <br>
 <br>
-<%= @holiday.name%> <p>On this holiday, <%= @user.username %> went to:</p>
+<%= @holiday.name%> <p>On this holiday, <%= @user.username %> went to these countries:</p>
 
 
+<%  @holiday.countries.each do |c|  %> <br>
+<%= c.name  %>     
+<% end   %>
 
-<% Country.all.each do |c| %>
-<%   @holiday.country_ids.each do |d|  %>
-<%     if c.id == d    %>
-<br>
- <a href="/country/<%=c.id%>/edit">  <%= c.name  %>    </a> 
+<p> And visited these: </p>
 
-
-       <% end  %>  
-   <% end  %>
- <% end   %>
-
-<br>
-
-<p> These were the cities visited on this holiday: </p>
-
-<% City.all.each do |c| %>
-<%   @holiday.city_ids.each do |d|  %> 
-<%     if c.id == d    %>
-<br>
-	<%= c.name  %>   
-    <% end  %>  
-   <% end  %>
- <% end   %>
+<%   @holiday.cities.uniq.each do |c|  %> <br>
+<%= c.name  %>   
+<% end   %>
 
 
 
