@@ -26,7 +26,15 @@
 
 <label> You can also add or delete cities from your holiday! </label>
 <br>
-<input type="text" name="holiday[city_ids][]" > <br>
+
+
+ <% City.all.each do |city| %>
+    <label><%= city.name %></label>
+    <input type="checkbox" name="holiday[city_ids][]" value="<%= city.id %>" id="<%= city.name %>" <%='checked' if @holiday.cities.include?(city) %>>
+  <% end %> <br>
+ <label>Or add a new City:</label>
+ <input type="text" name="city[name]"><br>
+
 
 
 <label> You can also add notes to your holiday here, and share tips with other travellers: </label>

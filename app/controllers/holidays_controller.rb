@@ -109,6 +109,9 @@ class HolidaysController < ApplicationController
 	          if !params[:holiday].empty?
 	            @holiday.update(params[:holiday]) unless @holiday.user_id != session[:user_id]
 	            @holiday.save
+	            unless params[:city][:name].empty?
+      				@holiday.cities << City.create(params[:city])
+    			end
 	            redirect to '/holidays'
 	          else
 	            redirect to '/holidays'
