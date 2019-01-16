@@ -12,27 +12,26 @@
 	<% Country.all.in_groups_of(5, false) do |row| %>
 	   <tr>
 		<% for country in row %>
-		 <td> <input type="checkbox" name="holiday[country_ids][]"
-               value="<%=country.id%>" id="<%=country.id%>"> 
-		 	<%= country.name %> </input> </td> 
+		 <td> 
+		 <input type="checkbox" name="holiday[country_ids][]" value="<%=country.id%>" id="<%=country.id%>"> 
+		 	<%= country.name %> 
+		 </input> 
+		</td> 
 		<% end  %>
 	   </tr>
 	<% end  %>
 </table>
 <br>
+<br>
+<br>
 
+<label> You can also add cities to your holiday here or edit and add them later: </label> <br>
 
+<input type="text" name="city[name][]" > <br>
 
-<br>
-<br>
-<label> You can also add cities to your holiday here or edit and add them later: </label>
-<br>
-<input type="text" name="city[name][]" >
-<br>
-<input type="text" name="city[name][]" >
-<br>
-<input type="text" name="city[name][]" >
-<br>
+<input type="text" name="city[name][]" > <br>
+
+<input type="text" name="city[name][]" > <br>
 
 <label> Add notes to your holiday here to share tips with other travellers: </label>
 <br>
