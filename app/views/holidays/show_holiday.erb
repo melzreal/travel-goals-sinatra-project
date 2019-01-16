@@ -9,12 +9,27 @@
 <%   @holiday.country_ids.each do |d|  %>
 <%     if c.id == d    %>
 <br>
- <a href="/holidays/country/<%=c.id%>/edit">  <%= c.name  %>    </a> 
+ <a href="/country/<%=c.id%>/edit">  <%= c.name  %>    </a> 
 
 
        <% end  %>  
    <% end  %>
  <% end   %>
+
+<br>
+
+<p> These were the cities visited on this holiday: </p>
+
+<% City.all.each do |c| %>
+<%   @holiday.city_ids.each do |d|  %> 
+<%     if c.id == d    %>
+<br>
+	<%= c.name  %>   
+    <% end  %>  
+   <% end  %>
+ <% end   %>
+
+
 
 <p> Holiday notes: </p>
 <% if !@holiday.holiday_notes.nil? %>

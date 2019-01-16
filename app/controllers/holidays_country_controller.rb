@@ -2,19 +2,21 @@ class HolidaysCountryController < ApplicationController
 
 
 
-    get '/holidays/country/:id' do 
+    get '/:holiday_id/country/:id' do 
 
     	if logged_in? 
+    		@holiday = Holiday.find(params[:holiday_id])
     		@country = Country.find(params[:id])
-    		redirect "/holidays/country/#{@country.id}/edit"
+    		redirect "/#{@holiday.id}/country/#{@country.id}/edit"
 		else 
 			redirect "/login?error=You have to be logged in to do that"
 		end 
 	end 
 
-    get '/holidays/country/:id/edit' do
+    get '/:holiday_id/country/:id/edit' do
     	
     	if logged_in?
+    		@holiday = Holiday.find(params[:holiday_id])
     		@country = Country.find(params[:id])
 			erb :'/holidays/edit_country'
 		else 
@@ -23,7 +25,7 @@ class HolidaysCountryController < ApplicationController
 	end 
 
 
-	patch '/country/:id' do
+	patch '/:holiday_id/country/:id' do
 		
         if logged_in?
           @country = Country.find(params[:id])

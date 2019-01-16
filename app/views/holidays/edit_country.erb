@@ -3,7 +3,7 @@
 <%= @country.name %>
 <br>
 
-<form action="/country/<%=@country.id%>" method="post">
+<form action="/<%=@holiday.id%>/country/<%=@country.id%>" method="post">
 <input type="hidden" name="_method" value="patch">
 
 
@@ -14,13 +14,13 @@
 
 <label> You can add the cities / towns you visited on this country: </label>
 <br>
-<input type="text" name="city[name][]" id="city1">
+<input type="text" name="holiday[city][name][]" id="city1">
 
 <br>
-<input type="text" name="city[name][]" id="city2">
+<input type="text" name="holiday[city][name][]" id="city2">
 
 <br>
-<input type="text" name="city[name][]" id="city3">
+<input type="text" name="holiday[city][name][]" id="city3">
 
 <input type="submit" id="cities" value="submit" />
 </form>
