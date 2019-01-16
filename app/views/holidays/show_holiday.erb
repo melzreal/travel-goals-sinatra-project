@@ -8,8 +8,9 @@
 <%= c.name  %>     
 <% end   %>
 
-<p> And visited these cities: </p>
+
 <% if !@holiday.cities.nil? && @user==@logged_in %>	
+<p> And visited these cities: </p>
 <%   @holiday.cities.uniq.each do |c|  %> <br>
 <%= c.name  %>  
 <% end   %>

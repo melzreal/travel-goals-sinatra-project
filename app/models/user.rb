@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
-   has_many :holidays
+   has_many   :holidays
+   has_many   :countries, through: :holidays
+   has_many   :cities, through: :holidays
+
    has_secure_password
    validates_uniqueness_of :username
    

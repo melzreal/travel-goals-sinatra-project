@@ -7,15 +7,15 @@
       <%      end  %>
 
 <h2> These are all the countries <%= @user.username %> has seen so far: </h2>
-<% @name_array.uniq.each do  |c|  %>
+<% @countries.each do  |c|  %>
  <br> 
- <%=   c  %> 	
+ <%=   c.name  %> 	
  <%   end  %>
 
  <h2> These are all the Cities <%= @user.username %> has seen so far: </h2>
-<% @city_array.uniq.each do  |c|  %>
+<% @cities.each do  |c|  %>
  <br> 
- <%=   c  %> 	
+ <%=   c.name  %> 	
  <%   end  %>
 
 
