@@ -1,7 +1,10 @@
 Travel goals CMS App - A small project bringing together routes, forms and notes. Consists of an MVC Sinatra Application using ActiveRecord.
 
-
-Run rake:db seed to insert all countries into your database.
+Download the repo then:
+bundle install
+rake db:migrate
+rake:db seed to insert all countries into your database
+shotgun to start a local server.
 
 
 Allows users to register, choose from a list of visited countries and manually add visited town or city.
@@ -21,12 +24,8 @@ Checklist done:
 - [x] Users can view holidays/ countries and click on them
 - [x] Prevent users from deleting holidays that were not created by that user
 - [x] Include user input validations - only for uniqueness of username and uniqueness of country, no html input validations enforced.
-
-
-
-Improvements to do:
 - [x] Add edit forms to add notes to each country and patch methods
-- [ ] Add secure authentication (currently session secret is set to secret)
+
 
 
 
