@@ -3,3 +3,9 @@ countries_arr = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua a
 countries_arr.each do |c|  
 	Country.create(name: "#{c}")		
 end
+
+User.create(username: "Belinda", email: "bel@bel.com", password:"awesome")
+User.create(username: "Peachy", email: "peachy@peachy.com", password:"peaches")
+User.create(username: "Meouch", email: "me@me.com", password:"meouch")
+
+

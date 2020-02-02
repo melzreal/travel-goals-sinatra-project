@@ -26,15 +26,22 @@ class HolidaysController < ApplicationController
 
 			@holiday = Holiday.new(name: params[:holiday][:name], country_ids: params[:holiday][:country_ids])
 			@holiday.user_id = @user
-			cities = []
-			params[:city][:name].each do |a| 
-					@city = City.find_or_create_by(name: a) unless a == ""
-					cities << @city.id 
-			end
-			@holiday.city_ids = cities
-			@holiday.save 
-
-			redirect to "/holidays/#{@holiday.id}"
+			
+				if params[:city][:name] != ["", "", ""]
+					cities = []
+					params[:city][:name].each do |a| 
+							@city = City.find_or_create_by(name: a) unless a == ""
+							cities << @city.id 
+							@holiday.city_ids = cities
+							@holiday.save 
+							redirect to "/holidays/#{@holiday.id}"
+					end
+				else
+					@holiday.save 
+					redirect to "/holidays/#{@holiday.id}"
+				end 
+		
+			
 		else 
 			redirect '/holidays'
 		end 	
